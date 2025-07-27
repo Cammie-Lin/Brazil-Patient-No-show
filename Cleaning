@@ -1,0 +1,30 @@
+#step1: check data
+df.info()      #看字段类型、缺失情况 
+df.shape       #看总行列数 
+df.isnull().sum() #每列的缺失值数
+df.duplicated().sum() #重复情况:none
+
+#step2: rename the wrong column name
+df.rename(columns={'Handcap': 'Handicap'})
+
+#step3: change datatype
+df['ScheduledDay'] = pd.to_datetime(df['ScheduledDay'])
+df['AppointmentDay'] = pd.to_datetime(df['AppointmentDay'])
+
+#step4: handle outliers
+df['Age'].describe() #看年龄的异常值，发现有小于0的数据，最大值为115（有可能所以保留）
+df = df[df['Age'] >= 0] #删除异常值的那行
+df['Gender'].unique() #看性别异常值
+df['Handicap'].unique() #看残障程度的异常值
+df['SMS_received'].unique() #看短信接收结果的异常值
+df['Scholarship'].unique() #看医疗补助结果的异常值
+df['Diabetes'].unique() #看糖尿病统计结果的异常值
+df['Hipertension'].unique() #看高血压统计结果的异常值
+df['Alcoholism'].unique() #看酗酒统计结果的异常值
+df['No-show'].unique() #看出现统计结果的异常值
+for col in ['Gender', 'Scholarship', 'Hipertension', 'Diabetes', 'Alcoholism', 'Handicap', 'SMS_received', 'No-show']:
+print(f"{col}: {df[col].unique()}") #以上所有统计结果的异常值查看
+df['Neighbourhood'].nunique() #看社区有多少个唯一值：81
+df['Neighbourhood'].value_counts() #看统计的哪个社区最多，结合上面的唯一值来判断是否有重复的异常值
+
+
