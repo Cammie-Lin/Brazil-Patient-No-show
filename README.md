@@ -2,3 +2,5 @@
 -Goal
 
 -This project is based on medical appointment data provided by Kaggle, aiming to analyze the impact of patient no show behavior on medical resource allocation. By constructing KPI indicator dashboards, user profiles, and intervention simulations, it provides data support and strategic recommendations for optimizing hospital operations.
+
+-The conclusion: the absent patient persona: 18-40 year-old, female, waited for 1-2 months
